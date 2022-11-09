@@ -63,6 +63,7 @@ jobs:
                 annotations:
                   kompose.cmd: kompose convert
                   kompose.version: 1.26.1 (HEAD)
+                  rollme: {{ randAlphaNum 5 | quote }}
                 creationTimestamp: null
                 labels:
                   io.kompose.service: $IMAGE_NAME
