@@ -56,7 +56,7 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-          echo "image_name=IMAGE_NAME" >> $GITHUB_ENV
+          echo "image_name=$IMAGE_NAME" >> $GITHUB_ENV
 
       - shell: bash
         run: |
