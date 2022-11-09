@@ -28,6 +28,9 @@ jobs:
       - name: Build image
         run: docker build front/ --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
+      - name: Set current date as env variable
+        run: echo "NOW::$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
       - name: Log in to registry
         # This is where you will update the PAT to PAT_TOKEN
         run: echo "${{ secrets.PAT_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
@@ -63,7 +66,7 @@ jobs:
                 annotations:
                   kompose.cmd: kompose convert
                   kompose.version: 1.26.1 (HEAD)
-                  rollme: {{ randAlphaNum 5 | quote }}
+                  rollme: $NOW
                 creationTimestamp: null
                 labels:
                   io.kompose.service: $IMAGE_NAME
